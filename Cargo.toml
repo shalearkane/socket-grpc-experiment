@@ -1,0 +1,19 @@
+[package]
+name = "socket-grpc-experiment"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "socket-client"
+path = "src/socket-client/main.rs"
+
+[[bin]]
+name = "socket-server"
+path = "src/socket-server/main.rs"
+
+# [[bin]]
+# name = "grpc-client"
+# path = "src/grpc-client/main.rs"
+
+
+[dependencies]
