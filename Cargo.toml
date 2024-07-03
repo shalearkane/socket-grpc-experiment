@@ -11,9 +11,16 @@ path = "src/socket-client/main.rs"
 name = "socket-server"
 path = "src/socket-server/main.rs"
 
-# [[bin]]
-# name = "grpc-client"
-# path = "src/grpc-client/main.rs"
+[[bin]]
+name = "grpc-client"
+path = "src/grpc-client/main.rs"
 
 
 [dependencies]
+prost = "0.12.6"
+tokio = { version = "1.38.0", features = ["macros", "rt-multi-thread"] }
+tonic = "0.11.0"
+tower = "0.4.13"
+
+[build-dependencies]
+tonic-build = "0.11.0"
