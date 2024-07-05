@@ -13,7 +13,7 @@ pub mod voting {
 }
 
 fn grpc_benchmark(c: &mut Criterion) {
-    c.bench_function("grpc", |b| {
+    c.bench_function("grpc-over-uds", |b| {
         b.to_async(
             tokio::runtime::Builder::new_current_thread()
                 .enable_io()

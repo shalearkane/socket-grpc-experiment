@@ -4,7 +4,7 @@ use serde_json::json;
 use std::time::Instant;
 
 fn tcp_benchmark(c: &mut Criterion) {
-    c.bench_function("tcp", |b| {
+    c.bench_function("json-over-tcp", |b| {
         b.to_async(
             tokio::runtime::Builder::new_current_thread()
                 .enable_time()
