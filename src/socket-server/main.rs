@@ -24,7 +24,10 @@ fn main() -> std::io::Result<()> {
         let bytes_read = stream.read(&mut buffer)?;
 
         // Process the received data (replace with your logic)
-        println!("Client sent: {}", String::from_utf8_lossy(&buffer[..bytes_read]));
+        println!(
+            "Client sent: {}",
+            String::from_utf8_lossy(&buffer[..bytes_read])
+        );
 
         // Send a response (optional)
         let response = b"Data received!";

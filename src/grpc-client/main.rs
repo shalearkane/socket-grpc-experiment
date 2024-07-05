@@ -1,10 +1,10 @@
 use std::io::stdin;
 
-use voting::{voting_client::VotingClient, VotingRequest};
 #[cfg(unix)]
 use tokio::net::UnixStream;
 use tonic::transport::{Endpoint, Uri};
 use tower::service_fn;
+use voting::{voting_client::VotingClient, VotingRequest};
 
 pub mod voting {
     tonic::include_proto!("voting");
@@ -46,7 +46,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
     Ok(())
 }
-
 
 #[cfg(not(unix))]
 fn main() {

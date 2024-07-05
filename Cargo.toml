@@ -15,9 +15,15 @@ path = "src/socket-server/main.rs"
 name = "grpc-client"
 path = "src/grpc-client/main.rs"
 
+[[bin]]
+name = "tcp-client"
+path = "src/tcp-client/main.rs"
+
 
 [dependencies]
 prost = "0.12.6"
+reqwest = {version="0.12.5", features = ["json"]}
+serde_json = "1.0.120"
 tokio = { version = "1.38.0", features = ["macros", "rt-multi-thread"] }
 tonic = "0.11.0"
 tower = "0.4.13"

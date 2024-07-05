@@ -21,7 +21,10 @@ fn main() -> std::io::Result<()> {
     let bytes_read = stream.read(&mut buffer)?;
 
     // Print the received response
-    println!("Received: {}", String::from_utf8_lossy(&buffer[..bytes_read]));
+    println!(
+        "Received: {}",
+        String::from_utf8_lossy(&buffer[..bytes_read])
+    );
 
     Ok(())
 }
