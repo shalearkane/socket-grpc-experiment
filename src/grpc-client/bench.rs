@@ -4,21 +4,12 @@ use std::time::Instant;
 
 #[cfg(unix)]
 use tokio::net::UnixStream;
-use tonic::transport::{Channel, Endpoint, Uri};
+use tonic::transport::{Endpoint, Uri};
 use tower::service_fn;
 use voting::{voting_client::VotingClient, VotingRequest};
 
 pub mod voting {
     tonic::include_proto!("voting");
-}
-
-async fn grpc_request(client: &mut VotingClient<Channel>) {
-    let request = tonic::Request::new(VotingRequest {
-        url: "something.com".to_string(),
-        vote: 1,
-    });
-
-    client.vote(request).await.unwrap();
 }
 
 fn grpc_benchmark(c: &mut Criterion) {
@@ -42,11 +33,15 @@ fn grpc_benchmark(c: &mut Criterion) {
                     .await
                     .unwrap();
 
-                let client = VotingClient::new(channel);
-
+                let mut client = VotingClient::new(channel);
                 let start: Instant = Instant::now();
+
                 for _i in 0..iters {
-                    grpc_request(&mut client.clone()).await;
+                    let request = tonic::Request::new(VotingRequest {
+                        url: "something.com".to_string(),
+                        vote: 1,
+                    });
+                    client.vote(request).await.unwrap();
                 }
                 start.elapsed()
             }
@@ -54,5 +49,5 @@ fn grpc_benchmark(c: &mut Criterion) {
     });
 }
 
-criterion_group!(grpc_bench, grpc_benchmark);
-criterion_main!(grpc_bench);
+criterion_group!(resp_bench, grpc_benchmark);
+criterion_main!(resp_bench);
