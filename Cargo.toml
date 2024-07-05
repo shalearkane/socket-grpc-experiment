@@ -21,6 +21,7 @@ path = "src/tcp-client/main.rs"
 
 
 [dependencies]
+criterion = {version = "0.5.1", features = ["html_reports","async_tokio"]}
 prost = "0.12.6"
 reqwest = {version="0.12.5", features = ["json"]}
 serde_json = "1.0.120"
@@ -30,3 +31,13 @@ tower = "0.4.13"
 
 [build-dependencies]
 tonic-build = "0.11.0"
+
+[[bench]]
+name = "tcp-benchmark"
+harness = false
+path = "src/tcp-client/bench.rs"
+
+[[bench]]
+name = "grpc-benchmark"
+harness = false
+path = "src/grpc-client/bench.rs"
